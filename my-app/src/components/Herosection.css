@@ -1,0 +1,5 @@
+.hero-section {
+  height: 80vh;
+  background: url('https://via.placeholder.com/1200x600') no-repeat center center;
+  background-size: cover;
+}
