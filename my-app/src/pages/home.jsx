@@ -1,24 +1,73 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import heroImg from "../public/images/hero.webp"; // place your webp image here
 
 export default function Home() {
   return (
     <div>
-      {/* Hero Section */}
-      <section className="bg-light text-dark text-center py-5">
+      {/* Navbar */}
+      <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
         <div className="container">
-          <h1 className="display-4">Find Your Perfect Match</h1>
-          <p className="lead">
-            India's trusted matrimonial service for genuine life partners.
-          </p>
-          <img
-            src="https://via.placeholder.com/600x300"
-            alt="Matrimonial Banner"
-            className="img-fluid my-4"
-          />
-          <a href="/register" className="btn btn-primary btn-lg">
-            Register Free
+          <a className="navbar-brand fw-bold text-primary" href="#">
+            ShaadiClone
           </a>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div
+            className="collapse navbar-collapse justify-content-end"
+            id="navbarNav"
+          >
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <a className="nav-link" href="#">
+                  About Us
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#">
+                  Help
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#">
+                  Login
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section
+        className="text-white text-center text-lg-start"
+        style={{
+          backgroundImage: `url(${heroImg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          padding: "100px 0"
+        }}
+      >
+        <div className="container">
+          <div className="row align-items-center">
+            <div className="col-lg-8">
+              <h1 className="display-4 fw-bold">
+                Find Your Perfect Match
+              </h1>
+              <p className="lead">
+                India’s most trusted matrimony and matchmaking service
+              </p>
+              <a href="/register" className="btn btn-primary btn-lg mt-3">
+                Find Your Match
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -57,6 +106,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Rest of your sections remain unchanged */}
       {/* Recently Joined Section */}
       <section className="bg-white py-5">
         <div className="container text-center">
