@@ -25,11 +25,33 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18' # Matches Azure Static Web Apps supported Node version
+          node-version: '18'
+      - name: Debug Environment
+        run: |
+          echo "Node version:"
+          node --version
+          echo "NPM version:"
+          npm --version
+          echo "Git config:"
+          git config --global --list
+          echo "Repository contents:"
+          ls -la
       - name: Install Dependencies
         run: npm ci
+        continue-on-error: false
+      - name: Debug Package.json
+        run: cat package.json
       - name: Build App
         run: npm run build
+        continue-on-error: false
+      - name: Verify Build Output
+        run: |
+          echo "Build folder contents:"
+          ls -la build || echo "Build folder not found"
+          if [ ! -f build/index.html ]; then
+            echo "Error: index.html not found in build folder"
+            exit 1
+          fi
       - name: Clean Git Config
         run: |
           git config --global --unset-all http.https://github.com/.extraheader || true
@@ -44,6 +66,8 @@ jobs:
           app_location: "/" # App source code path
           api_location: "" # Api source code path - optional
           output_location: "build" # Built app content directory for React
+        env:
+          CI: true # Ensures React treats warnings as errors in CI
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
